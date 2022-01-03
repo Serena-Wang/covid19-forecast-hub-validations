@@ -442,6 +442,7 @@ def check_forecast_retraction(
         existing_file_path = (
             hub_mirrored_directory_root/relative_path_str
         ).resolve()
+        logger.info(existing_file_path)
         if existing_file_path.exists():
             no_files_checked_log: bool = False
 
