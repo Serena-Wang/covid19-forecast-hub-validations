@@ -442,9 +442,8 @@ def check_forecast_retraction(
         existing_file_path = (
             hub_mirrored_directory_root/relative_path_str
         ).resolve()
-        logger.info(existing_file_path)
         if existing_file_path.exists():
-            no_files_checked_log: bool = False
+            no_files_checked_log = False
 
             if store["UPDATES_ALLOWED"]:
                 logger.info(
@@ -461,9 +460,6 @@ def check_forecast_retraction(
                 old_forecast_file_path=existing_file_path,
                 new_forecast_file_path=file
             )
-            logger.info(compare_result)
-            logger.info(compare_result.has_no_retraction_or_duplication)
-
             if compare_result.is_all_duplicate:
                 success = False
                 logger.error(
@@ -524,6 +520,7 @@ def check_forecast_retraction(
                         "Forecast file contains updates to existing file, which are "
                         "disallowed."
                     ))
+                    errors[file] = error_list
 
 
     if no_files_checked_log:
