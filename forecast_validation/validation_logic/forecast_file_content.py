@@ -460,6 +460,9 @@ def check_forecast_retraction(
                 old_forecast_file_path=existing_file_path,
                 new_forecast_file_path=file
             )
+            print(compare_result)
+            print(compare_result.has_no_retraction_or_duplication)
+            
             if compare_result.is_all_duplicate:
                 success = False
                 logger.error(
