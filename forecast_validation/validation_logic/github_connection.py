@@ -144,8 +144,11 @@ def determine_pull_request_type(store: dict[str, Any]) -> ValidationStepResult:
             "PR does not contain files that can be interpreted "
             "as part of a forecast submission; validations skipped."
         )
+        logger.info("printing labels")
+        logger.info(labels)
         return ValidationStepResult(
             success=True,
+            labels=labels,
             skip_steps_after=True
         )
     else:
