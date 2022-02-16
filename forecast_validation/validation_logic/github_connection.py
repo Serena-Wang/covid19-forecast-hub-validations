@@ -132,8 +132,6 @@ def determine_pull_request_type(store: dict[str, Any]) -> ValidationStepResult:
     logger.info("Determining if PR is a forecast submission...")
     if not is_forecast_submission(filtered_files):
         other_files = filtered_files[PullRequestFileType.OTHER_NONFS]
-        logger.info("printing other_nonfs files")
-        logger.info(other_files)
         for file in other_files:
             labels.add(all_labels["other-files-updated"])
             if file.filename.startswith("code"):
@@ -144,8 +142,6 @@ def determine_pull_request_type(store: dict[str, Any]) -> ValidationStepResult:
             "PR does not contain files that can be interpreted "
             "as part of a forecast submission; validations skipped."
         )
-        logger.info("printing labels")
-        logger.info(labels)
         return ValidationStepResult(
             success=True,
             labels=labels,
